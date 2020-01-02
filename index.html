@@ -15,87 +15,116 @@
   <h1 class="display-2" style="text-align: center;"> Exchange Rates </h1>
   <div class="dropdown" style="padding: 50px 0px 0px 100px;">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false">
-      USD
+      aria-haspopup="true" aria-expanded="false"> USD
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">USD</a>
-      <a class="dropdown-item" href="#">EUR</a>
-      <a class="dropdown-item" href="#">CAD</a>
-      <a class="dropdown-item" href="#">DKK</a>
-      <a class="dropdown-item" href="#">RUB</a>
-      <a class="dropdown-item" href="#">GBP</a>
-      <a class="dropdown-item" href="#">HKD</a>
-      <a class="dropdown-item" href="#">UAH</a>
-      <a class="dropdown-item" href="#">PLN</a>
-      <a class="dropdown-item" href="#">RON</a>
+      <a class="dropdown-item usd" href="#">USD</a>
+      <a class="dropdown-item eur" href="#">EUR</a>
+      <a class="dropdown-item cad" href="#">CAD</a>
+      <a class="dropdown-item dkk" href="#">DKK</a>
+      <a class="dropdown-item rub" href="#">RUB</a>
+      <a class="dropdown-item gbp" href="#">GBP</a>
+      <a class="dropdown-item hkd" href="#">HKD</a>
+      <a class="dropdown-item uah" href="#">UAH</a>
+      <a class="dropdown-item pln" href="#">PLN</a>
+      <a class="dropdown-item ron" href="#">RON</a>
     </div>
   </div>
-  <div style="display: block; padding: 100px;">
+
+  <!-- <div class="d-flex justify-content-center">
+    <div class="spinner-border spinner" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div> -->
+
+  <div style="padding: 50px 100px 100px 100px;">
     <table class="table table-bordered table-dark">
       <thead>
         <tr>
           <th scope="col"></th>
-          <th scope="col">USD Exchange rate </th>
+          <th scope="col" class="exchange" style="font-size: 30px; text-align: center;">
+            USD Exchange rate
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <th scope="row">1</th>
-          <td> USD (доллар США) </td>
-          <td></td>
+          <td> USD (доллар, США) </td>
+          <td class="tdusd"></td>
         </tr>
         <tr>
           <th scope="row">2</th>
           <td> EUR (евро) </td>
-          <td></td>
+          <td class="tdeur"></td>
         </tr>
         <tr>
           <th scope="row">3</th>
-          <td> CAD (доллар Канада) </td>
-          <td></td>
+          <td> CAD (доллар, Канада) </td>
+          <td class="tdcad"></td>
         </tr>
         <tr>
           <th scope="row">4</th>
-          <td> DKK (крона Дания) </td>
-          <td></td>
+          <td> DKK (крона, Дания) </td>
+          <td class="tddkk"></td>
         </tr>
         <tr>
           <th scope="row">5</th>
-          <td> RUB (рубль Россия) </td>
-          <td></td>
+          <td> RUB (рубль, Россия) </td>
+          <td class="tdrub"></td>
         </tr>
         <tr>
           <th scope="row">6</th>
           <td> GBP (фунт стерлингов) </td>
-          <td></td>
+          <td class="tdgbp"></td>
         </tr>
         <tr>
           <th scope="row">7</th>
-          <td> HKD (доллар Гонконг) </td>
-          <td></td>
+          <td> HKD (доллар, Гонконг) </td>
+          <td class="tdhkd"></td>
         </tr>
         <tr>
           <th scope="row">8</th>
-          <td> UAH (гривна Украина) </td>
-          <td></td>
+          <td> UAH (гривна, Украина) </td>
+          <td class="tduah"></td>
         </tr>
         <tr>
           <th scope="row">9</th>
-          <td> PLN (злотый Польша) </td>
-          <td></td>
+          <td> PLN (злотый, Польша) </td>
+          <td class="tdpln"></td>
         </tr>
         <tr>
           <th scope="row">10</th>
-          <td> RON (лей Румыния) </td>
-          <td></td>
+          <td> RON (лей, Румыния) </td>
+          <td class="tdron"></td>
         </tr>
 
       </tbody>
     </table>
   </div>
+  <script>
+    // let spinner = document.querySelector(".spinner");
+    // setTimeout(
+    async function rateUsd() {
+      let usd = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+      let moneysUsd = await usd.json();
+      tdUsd.innerHTML = moneysUsd.rates.USD;
+      tdEur.innerHTML = moneysUsd.rates.EUR;
+      tdCad.innerHTML = moneysUsd.rates.CAD;
+      tdDkk.innerHTML = moneysUsd.rates.DKK;
+      tdRub.innerHTML = moneysUsd.rates.RUB;
+      tdGbp.innerHTML = moneysUsd.rates.GBP;
+      tdHkd.innerHTML = moneysUsd.rates.HKD;
+      tdUah.innerHTML = moneysUsd.rates.UAH;
+      tdPln.innerHTML = moneysUsd.rates.PLN;
+      tdRon.innerHTML = moneysUsd.rates.RON;
+    };
+    rateUsd();
+      //   spinner.style.display = "none";
+      // }, 3000);
 
+  </script>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
     crossorigin="anonymous"></script>
