@@ -56,35 +56,6 @@
     </div>
   </main>
 
-  <script>
-    let main = document.querySelector('.main');
-    main.style.display = "none";
-
-    setTimeout(
-      async function ratesMoneys() {
-        let spinner = document.querySelector('.spinner');
-        let response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
-        let moneys = await response.json();
-        let arrKey = Object.keys(moneys.rates);
-        let arrValue = Object.values(moneys.rates);
-        rateTable(arrKey, arrValue);
-        spinner.style.display = "none";
-        main.style.display = "block";
-
-      }, 3000);
-
-    function rateTable(rates) {
-      let tbody = document.querySelector('.tbody');
-      for (let key in rates) {
-        let string = `
-            <td> ${ key} </td>
-            <td class="tdusd"> ${ rates[key]} </td >
-          `;
-        tbody.insertAdjacentHTML('beforeend', string);
-      };
-    };
-
-  </script>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
     crossorigin="anonymous"></script>
